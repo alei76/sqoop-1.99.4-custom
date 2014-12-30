@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/connector/connector.iml" filepath="$PROJECT_DIR$/connector/connector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/connector/connector-hdfs/connector-hdfs.iml" filepath="$PROJECT_DIR$/connector/connector-hdfs/connector-hdfs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/connector/connector-sdk/connector-sdk.iml" filepath="$PROJECT_DIR$/connector/connector-sdk/connector-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/execution/execution.iml" filepath="$PROJECT_DIR$/execution/execution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repository/repository.iml" filepath="$PROJECT_DIR$/repository/repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sqoop.iml" filepath="$PROJECT_DIR$/sqoop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/sqoop-client.iml" filepath="$PROJECT_DIR$/client/sqoop-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/sqoop-common.iml" filepath="$PROJECT_DIR$/common/sqoop-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/connector/connector-generic-jdbc/sqoop-connector-generic-jdbc.iml" filepath="$PROJECT_DIR$/connector/connector-generic-jdbc/sqoop-connector-generic-jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/sqoop-core.iml" filepath="$PROJECT_DIR$/core/sqoop-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dist/sqoop-dist.iml" filepath="$PROJECT_DIR$/dist/sqoop-dist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/docs/sqoop-docs.iml" filepath="$PROJECT_DIR$/docs/sqoop-docs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/execution/mapreduce/sqoop-execution-mapreduce.iml" filepath="$PROJECT_DIR$/execution/mapreduce/sqoop-execution-mapreduce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repository/repository-derby/sqoop-repository-derby.iml" filepath="$PROJECT_DIR$/repository/repository-derby/sqoop-repository-derby.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/sqoop-server.iml" filepath="$PROJECT_DIR$/server/sqoop-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shell/sqoop-shell.iml" filepath="$PROJECT_DIR$/shell/sqoop-shell.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spi/sqoop-spi.iml" filepath="$PROJECT_DIR$/spi/sqoop-spi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/submission/mapreduce/sqoop-submission-mapreduce.iml" filepath="$PROJECT_DIR$/submission/mapreduce/sqoop-submission-mapreduce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tomcat/sqoop-tomcat.iml" filepath="$PROJECT_DIR$/tomcat/sqoop-tomcat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tools/sqoop-tools.iml" filepath="$PROJECT_DIR$/tools/sqoop-tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/submission/submission.iml" filepath="$PROJECT_DIR$/submission/submission.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+    </modules>
+  </component>
+</project>
+

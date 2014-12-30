@@ -1,0 +1,78 @@
+----------------------------------------------------------------
+Thu Dec 25 10:04:32 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-014a-7f30-32cf-00001015f688 
+on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/wangxufeng/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Dec 25 10:04:34 CST 2014:
+Shutting down instance a816c00e-014a-7f30-32cf-00001015f688 on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+----------------------------------------------------------------
+Thu Dec 25 10:04:34 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance 6990c283-014a-7f30-32cf-00001015f688 
+on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/wangxufeng/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Dec 25 10:04:35 CST 2014:
+Shutting down instance 6990c283-014a-7f30-32cf-00001015f688 on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+----------------------------------------------------------------
+Thu Dec 25 10:04:35 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance 2559c4eb-014a-7f30-32cf-00001015f688 
+on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/wangxufeng/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Dec 25 10:04:36 CST 2014:
+Shutting down instance 2559c4eb-014a-7f30-32cf-00001015f688 on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+----------------------------------------------------------------
+Thu Dec 25 10:04:36 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance 2131c756-014a-7f30-32cf-00001015f688 
+on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/wangxufeng/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Dec 25 10:04:37 CST 2014:
+Shutting down instance 2131c756-014a-7f30-32cf-00001015f688 on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+----------------------------------------------------------------
+Thu Dec 25 10:04:37 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance ef0a89bc-014a-7f30-32cf-00001015f688 
+on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/wangxufeng/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Dec 25 10:04:38 CST 2014:
+Shutting down instance ef0a89bc-014a-7f30-32cf-00001015f688 on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+----------------------------------------------------------------
+Thu Dec 25 10:04:38 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance 15e58c1d-014a-7f30-32cf-00001015f688 
+on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/wangxufeng/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Dec 25 10:04:39 CST 2014:
+Shutting down instance 15e58c1d-014a-7f30-32cf-00001015f688 on database directory memory:D:\stormRTDevGitHub\sqoop-1.99.4-custom\repository\repository-derby\myDB with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 

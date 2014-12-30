@@ -1,0 +1,69 @@
+0    [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+39   [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null
+53   [main] ERROR org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Exception in repository operation
+java.sql.SQLIntegrityConstraintViolationException: The statement was aborted because it would have caused a duplicate key value in a unique or primary key constraint or unique index identified by 'FK_SQ_LNK_NAME_UNIQUE' defined on 'SQ_LINK'.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedStatement.executeStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.executeStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.executeUpdate(Unknown Source)
+	at org.apache.sqoop.repository.derby.DerbyRepositoryHandler.createLink(DerbyRepositoryHandler.java:1159)
+	at org.apache.sqoop.repository.derby.TestLinkHandling.testCreateDuplicateLink(TestLinkHandling.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:19)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:134)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:103)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:74)
+Caused by: java.sql.SQLException: The statement was aborted because it would have caused a duplicate key value in a unique or primary key constraint or unique index identified by 'FK_SQ_LNK_NAME_UNIQUE' defined on 'SQ_LINK'.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 43 more
+Caused by: ERROR 23505: The statement was aborted because it would have caused a duplicate key value in a unique or primary key constraint or unique index identified by 'FK_SQ_LNK_NAME_UNIQUE' defined on 'SQ_LINK'.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.execute.IndexChanger.insertAndCheckDups(Unknown Source)
+	at org.apache.derby.impl.sql.execute.IndexChanger.doInsert(Unknown Source)
+	at org.apache.derby.impl.sql.execute.IndexChanger.insert(Unknown Source)
+	at org.apache.derby.impl.sql.execute.IndexSetChanger.insert(Unknown Source)
+	at org.apache.derby.impl.sql.execute.RowChangerImpl.insertRow(Unknown Source)
+	at org.apache.derby.impl.sql.execute.InsertResultSet.normalInsertCore(Unknown Source)
+	at org.apache.derby.impl.sql.execute.InsertResultSet.open(Unknown Source)
+	at org.apache.derby.impl.sql.GenericPreparedStatement.executeStmt(Unknown Source)
+	at org.apache.derby.impl.sql.GenericPreparedStatement.execute(Unknown Source)
+	... 37 more
+60   [main] ERROR org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Associated objects: 1
+60   [main] ERROR org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - 	MLink: link: test link-config: Link: Configs: config-C1:1:[input-I1:1:STRING:30, input-I2:2:MAP]config-C2:2:[input-I3:3:STRING:30, input-I4:4:MAP]Type: LINK
+5035 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+5056 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null
+5126 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+5129 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <mkdir dir="D:\stormRTDevGitHub\sqoop-1.99.4-custom\common\target/generated-sources/java"/>
+  <exec executable="sh">
+    <arg line="&apos;D:\stormRTDevGitHub\sqoop-1.99.4-custom\common/src/saveVersion.sh&apos; 1.99.4 &apos;D:\stormRTDevGitHub\sqoop-1.99.4-custom\common\target/generated-sources/java&apos;"/>
+  </exec>
+</target>
+</project>

@@ -1,0 +1,218 @@
+Testing with Schemas
+	FROM: Schema{name=FROM-EMPTY,columns=[
+	]}
+	TO: Schema{name=TO-EMPTY,columns=[
+	]}
+0    [main] DEBUG org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of successful kerberos logins and latency (milliseconds)], valueName=Time)
+2    [main] DEBUG org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of failed kerberos logins and latency (milliseconds)], valueName=Time)
+3    [main] DEBUG org.apache.hadoop.metrics2.impl.MetricsSystemImpl  - UgiMetrics, User and group related metrics
+679  [main] DEBUG org.apache.hadoop.security.Groups  -  Creating new Groups object
+680  [main] DEBUG org.apache.hadoop.util.NativeCodeLoader  - Trying to load the custom-built native-hadoop library...
+682  [main] DEBUG org.apache.hadoop.util.NativeCodeLoader  - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+682  [main] DEBUG org.apache.hadoop.util.NativeCodeLoader  - java.library.path=E:\Java\jdk1.8.0_05\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;%CommonProgramFiles%\Microsoft Shared\Windows Live;C:\ProgramData\Oracle\Java\javapath;E:\BigData\apache-storm-0.9.1-incubating\bin;E:\Java\jdk1.8.0_05\bin;C:\Program Files\Apache Software Foundation\apache-maven-3.2.1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Zend\ZendServer\share\ZendFramework\bin;C:\Program Files (x86)\Zend\ZendServer\bin;C:\Program Files (x86)\Zend\MySQL55\bin;C:\Python26;C:\Program Files (x86)\VisualSVN Server\bin;C:\Program Files (x86)\scala\bin;C:\cygwin64\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;.
+682  [main] WARN  org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+682  [main] DEBUG org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Falling back to shell based
+683  [main] DEBUG org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+683  [main] DEBUG org.apache.hadoop.security.Groups  - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000
+687  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - hadoop login
+687  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - hadoop login commit
+690  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - using local user:NTUserPrincipal: wangxufeng
+691  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - UGI loginUser:wangxufeng (auth:SIMPLE)
+707  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.connect(Job.java:1233)
+712  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.YarnClientProtocolProvider
+712  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Cannot pick org.apache.hadoop.mapred.YarnClientProtocolProvider as the ClientProtocolProvider - returned null protocol
+714  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.LocalClientProtocolProvider
+741  [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics  - Initializing JVM Metrics with processName=JobTracker, sessionId=
+745  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Picked org.apache.hadoop.mapred.LocalClientProtocolProvider as the ClientProtocolProvider
+745  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Cluster.getFileSystem(Cluster.java:161)
+751  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)
+767  [main] DEBUG org.apache.hadoop.util.Shell  - Failed to detect a valid hadoop home directory
+java.io.IOException: HADOOP_HOME or hadoop.home.dir are not set.
+	at org.apache.hadoop.util.Shell.checkHadoopHome(Shell.java:225)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:250)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:639)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:435)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:277)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:344)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1268)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1265)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1491)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1286)
+	at org.apache.sqoop.job.JobUtils.runJob(JobUtils.java:53)
+	at org.apache.sqoop.job.TestMatching.testSchemaMatching(TestMatching.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:134)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:103)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:74)
+770  [main] ERROR org.apache.hadoop.util.Shell  - Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:278)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:300)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:293)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:639)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:435)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:277)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:344)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1268)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1265)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1491)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1286)
+	at org.apache.sqoop.job.JobUtils.runJob(JobUtils.java:53)
+	at org.apache.sqoop.job.TestMatching.testSchemaMatching(TestMatching.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:134)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:103)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:74)
+Testing with Schemas
+	FROM: Schema{name=FROM-1,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null},
+	Text{name=3,nullable=true,size=null}]}
+	TO: Schema{name=TO-EMPTY,columns=[
+	]}
+789  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.connect(Job.java:1233)
+789  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.YarnClientProtocolProvider
+789  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Cannot pick org.apache.hadoop.mapred.YarnClientProtocolProvider as the ClientProtocolProvider - returned null protocol
+789  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.LocalClientProtocolProvider
+789  [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics  - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+790  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Picked org.apache.hadoop.mapred.LocalClientProtocolProvider as the ClientProtocolProvider
+790  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Cluster.getFileSystem(Cluster.java:161)
+791  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)
+Testing with Schemas
+	FROM: Schema{name=TO-EMPTY,columns=[
+	]}
+	TO: Schema{name=TO-1,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null},
+	Text{name=3,nullable=true,size=null}]}
+808  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.connect(Job.java:1233)
+808  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.YarnClientProtocolProvider
+808  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Cannot pick org.apache.hadoop.mapred.YarnClientProtocolProvider as the ClientProtocolProvider - returned null protocol
+808  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.LocalClientProtocolProvider
+808  [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics  - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+810  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Picked org.apache.hadoop.mapred.LocalClientProtocolProvider as the ClientProtocolProvider
+810  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Cluster.getFileSystem(Cluster.java:161)
+810  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)
+Testing with Schemas
+	FROM: Schema{name=FROM-1,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null},
+	Text{name=3,nullable=true,size=null}]}
+	TO: Schema{name=TO-1,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null},
+	Text{name=3,nullable=true,size=null}]}
+836  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.connect(Job.java:1233)
+836  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.YarnClientProtocolProvider
+837  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Cannot pick org.apache.hadoop.mapred.YarnClientProtocolProvider as the ClientProtocolProvider - returned null protocol
+837  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.LocalClientProtocolProvider
+842  [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics  - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+842  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Picked org.apache.hadoop.mapred.LocalClientProtocolProvider as the ClientProtocolProvider
+842  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Cluster.getFileSystem(Cluster.java:161)
+843  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)
+Testing with Schemas
+	FROM: Schema{name=FROM-2,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null}]}
+	TO: Schema{name=TO-1,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null},
+	Text{name=3,nullable=true,size=null}]}
+862  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.connect(Job.java:1233)
+863  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.YarnClientProtocolProvider
+863  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Cannot pick org.apache.hadoop.mapred.YarnClientProtocolProvider as the ClientProtocolProvider - returned null protocol
+864  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.LocalClientProtocolProvider
+866  [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics  - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+866  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Picked org.apache.hadoop.mapred.LocalClientProtocolProvider as the ClientProtocolProvider
+866  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Cluster.getFileSystem(Cluster.java:161)
+867  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)
+Testing with Schemas
+	FROM: Schema{name=FROM-1,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null},
+	Text{name=3,nullable=true,size=null}]}
+	TO: Schema{name=TO-2,columns=[
+	FixedPoint{name=1,nullable=true,byteSize=null,unsigned=null},
+	FloatingPoint{name=2,nullable=true,byteSize=null}]}
+890  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.connect(Job.java:1233)
+891  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.YarnClientProtocolProvider
+891  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Cannot pick org.apache.hadoop.mapred.YarnClientProtocolProvider as the ClientProtocolProvider - returned null protocol
+891  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Trying ClientProtocolProvider : org.apache.hadoop.mapred.LocalClientProtocolProvider
+892  [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics  - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+892  [main] DEBUG org.apache.hadoop.mapreduce.Cluster  - Picked org.apache.hadoop.mapred.LocalClientProtocolProvider as the ClientProtocolProvider
+892  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Cluster.getFileSystem(Cluster.java:161)
+893  [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - PrivilegedAction as:wangxufeng (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.submit(Job.java:1265)

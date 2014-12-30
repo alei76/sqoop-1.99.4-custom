@@ -1,0 +1,5 @@
+0    [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up Driver and config 
+151  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up Driver and config 
+175  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looked up Driver and config
+1125 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up Driver and config 
+1153 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looked up Driver and config

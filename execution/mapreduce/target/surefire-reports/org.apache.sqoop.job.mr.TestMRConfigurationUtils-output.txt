@@ -1,0 +1,15 @@
+0    [main] DEBUG org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of successful kerberos logins and latency (milliseconds)], valueName=Time)
+8    [main] DEBUG org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of failed kerberos logins and latency (milliseconds)], valueName=Time)
+9    [main] DEBUG org.apache.hadoop.metrics2.impl.MetricsSystemImpl  - UgiMetrics, User and group related metrics
+2514 [main] DEBUG org.apache.hadoop.security.Groups  -  Creating new Groups object
+2516 [main] DEBUG org.apache.hadoop.util.NativeCodeLoader  - Trying to load the custom-built native-hadoop library...
+2517 [main] DEBUG org.apache.hadoop.util.NativeCodeLoader  - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+2517 [main] DEBUG org.apache.hadoop.util.NativeCodeLoader  - java.library.path=E:\Java\jdk1.8.0_05\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;%CommonProgramFiles%\Microsoft Shared\Windows Live;C:\ProgramData\Oracle\Java\javapath;E:\BigData\apache-storm-0.9.1-incubating\bin;E:\Java\jdk1.8.0_05\bin;C:\Program Files\Apache Software Foundation\apache-maven-3.2.1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Zend\ZendServer\share\ZendFramework\bin;C:\Program Files (x86)\Zend\ZendServer\bin;C:\Program Files (x86)\Zend\MySQL55\bin;C:\Python26;C:\Program Files (x86)\VisualSVN Server\bin;C:\Program Files (x86)\scala\bin;C:\cygwin64\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;.
+2517 [main] WARN  org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2517 [main] DEBUG org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Falling back to shell based
+2518 [main] DEBUG org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+2519 [main] DEBUG org.apache.hadoop.security.Groups  - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000
+2522 [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - hadoop login
+2523 [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - hadoop login commit
+2527 [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - using local user:NTUserPrincipal: wangxufeng
+2528 [main] DEBUG org.apache.hadoop.security.UserGroupInformation  - UGI loginUser:wangxufeng (auth:SIMPLE)

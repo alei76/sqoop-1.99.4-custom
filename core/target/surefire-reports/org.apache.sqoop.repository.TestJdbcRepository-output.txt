@@ -1,0 +1,49 @@
+0    [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading driver
+25   [main] INFO  org.apache.sqoop.repository.Repository  - Driver upgrade finished
+38   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+50   [main] INFO  org.apache.sqoop.repository.Repository  -  Link upgrade for link:null for connector:A1
+54   [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+57   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+58   [main] INFO  org.apache.sqoop.repository.Repository  -  Link upgrade for link:null for connector:A1
+58   [main] INFO  org.apache.sqoop.repository.Repository  -  Link upgrade for link:null for connector:A1
+58   [main] INFO  org.apache.sqoop.repository.Repository  -  All Link and configs for this connector processed
+59   [main] INFO  org.apache.sqoop.repository.Repository  -  Job upgrade for job:null for connector:A1
+59   [main] INFO  org.apache.sqoop.repository.Repository  -  Job upgrade for job:null for connector:A1
+60   [main] INFO  org.apache.sqoop.repository.Repository  -  All Job and configs for this connector processed
+60   [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+68   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+69   [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+71   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading driver
+72   [main] INFO  org.apache.sqoop.repository.Repository  - Driver upgrade finished
+74   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+75   [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+78   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+78   [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+82   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading driver
+86   [main] INFO  org.apache.sqoop.repository.Repository  - Driver upgrade finished
+88   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+88   [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+93   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading driver
+97   [main] INFO  org.apache.sqoop.repository.Repository  - Driver upgrade finished
+99   [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+100  [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+103  [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading driver
+103  [main] INFO  org.apache.sqoop.repository.Repository  - Driver upgrade finished
+106  [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading driver
+111  [main] ERROR org.apache.sqoop.repository.Repository  - Upgrader created invalid job with id 1
+111  [main] ERROR org.apache.sqoop.repository.Repository  - Validation errors:
+111  [main] ERROR org.apache.sqoop.repository.Repository  - 	: {ERROR: Simply because.}
+111  [main] ERROR org.apache.sqoop.repository.Repository  - Upgrader created invalid job with id 2
+112  [main] ERROR org.apache.sqoop.repository.Repository  - Validation errors:
+112  [main] ERROR org.apache.sqoop.repository.Repository  - 	: {ERROR: Simply because.}
+112  [main] INFO  org.apache.sqoop.repository.Repository  - Driver upgrade finished
+114  [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+115  [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+117  [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading connector: A1
+118  [main] INFO  org.apache.sqoop.repository.Repository  -  Link upgrade for link:null for connector:A1
+118  [main] INFO  org.apache.sqoop.repository.Repository  -  Link upgrade for link:null for connector:A1
+118  [main] INFO  org.apache.sqoop.repository.Repository  -  All Link and configs for this connector processed
+119  [main] INFO  org.apache.sqoop.repository.Repository  -  Job upgrade for job:null for connector:A1
+119  [main] INFO  org.apache.sqoop.repository.Repository  - Connector upgrade finished for: A1
+120  [main] INFO  org.apache.sqoop.repository.Repository  - Upgrading driver
+121  [main] INFO  org.apache.sqoop.repository.Repository  - Driver upgrade finished

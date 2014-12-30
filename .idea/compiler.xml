@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="connector-generic-hdfs" />
+        <module name="connector-hdfs" />
+        <module name="connector-sdk" />
+        <module name="sqoop-client" />
+        <module name="sqoop-common" />
+        <module name="sqoop-connector-generic-jdbc" />
+        <module name="sqoop-core" />
+        <module name="sqoop-docs" />
+        <module name="sqoop-execution-mapreduce" />
+        <module name="sqoop-repository-derby" />
+        <module name="sqoop-server" />
+        <module name="sqoop-shell" />
+        <module name="sqoop-spi" />
+        <module name="sqoop-submission-mapreduce" />
+        <module name="sqoop-tomcat" />
+        <module name="sqoop-tools" />
+        <module name="test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="connector-generic-hdfs" target="1.6" />
+      <module name="connector-hdfs" target="1.8" />
+      <module name="connector-sdk" target="1.8" />
+      <module name="sqoop-client" target="1.8" />
+      <module name="sqoop-common" target="1.8" />
+      <module name="sqoop-common-test" target="1.6" />
+      <module name="sqoop-connector-generic-jdbc" target="1.8" />
+      <module name="sqoop-core" target="1.8" />
+      <module name="sqoop-docs" target="1.8" />
+      <module name="sqoop-execution-mapreduce" target="1.8" />
+      <module name="sqoop-repository-derby" target="1.8" />
+      <module name="sqoop-security" target="1.6" />
+      <module name="sqoop-server" target="1.8" />
+      <module name="sqoop-shell" target="1.8" />
+      <module name="sqoop-spi" target="1.8" />
+      <module name="sqoop-submission-mapreduce" target="1.8" />
+      <module name="sqoop-tomcat" target="1.8" />
+      <module name="sqoop-tools" target="1.8" />
+      <module name="test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

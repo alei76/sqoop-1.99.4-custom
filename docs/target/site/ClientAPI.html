@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sqoop Java Client API Guide &mdash; Apache Sqoop  documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Apache Sqoop  documentation" href="index.html" /> 
+  </head>
+  <body>
+      <div class="header"><img class="rightlogo" src="_static/sqoop-logo.png" alt="Logo"/><h1 class="heading"><a href="index.html">
+          <span>Apache Sqoop  documentation</span></a></h1>
+        <h2 class="heading"><span>Sqoop Java Client API Guide</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="sqoop-java-client-api-guide">
+<h1>Sqoop Java Client API Guide<a class="headerlink" href="#sqoop-java-client-api-guide" title="Permalink to this headline">¶</a></h1>
+<p>This document will explain how to use Sqoop Java Client API with external application. Client API allows you to execute the functions of sqoop commands. It requires Sqoop Client JAR and its dependencies.</p>
+<p>The main class that provides wrapper methods for all the supported operations is the</p>
+<div class="highlight-none"><div class="highlight"><pre>public class SqoopClient {
+  ...
+}
+</pre></div>
+</div>
+<p>Java Client API is explained using Generic JDBC Connector example. Before executing the application using the sqoop client API, check whether sqoop server is running.</p>
+<div class="section" id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
+<p>Given workflow has to be followed for executing a sqoop job in Sqoop server.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Create LINK object for a given connectorId             - Creates Link object and returns linkId (lid)</li>
+<li>Create a JOB for a given &#8220;from&#8221; and &#8220;to&#8221; linkId            - Create Job object and returns jobId (jid)</li>
+<li>Start the JOB for a given jobId                        - Start Job on the server and creates a submission record</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="project-dependencies">
+<h2>Project Dependencies<a class="headerlink" href="#project-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Here given maven dependency</p>
+<div class="highlight-none"><div class="highlight"><pre>&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.sqoop&lt;/groupId&gt;
+    &lt;artifactId&gt;sqoop-client&lt;/artifactId&gt;
+    &lt;version&gt;${requestedVersion}&lt;/version&gt;
+&lt;/dependency&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<p>First initialize the SqoopClient class with server URL as argument.</p>
+<div class="highlight-none"><div class="highlight"><pre>String url = &quot;http://localhost:12000/sqoop/&quot;;
+SqoopClient client = new SqoopClient(url);
+</pre></div>
+</div>
+<p>Server URL value can be modfied by setting value to setServerUrl(String) method</p>
+<div class="highlight-none"><div class="highlight"><pre>client.setServerUrl(newUrl);
+</pre></div>
+</div>
+</div>
+<div class="section" id="link">
+<h2>Link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h2>
+<p>Connectors provide the facility to interact with many data sources and thus can be used as a means to transfer data between them in Sqoop. The registered connector implementation will provide logic to read from and/or write to a data source that it represents. A connector can have one or more links associated with it. The java client API allows you to create, update and delete a link for any registered connector. Creating or updating a link requires you to populate the Link Config for that particular connector. Hence the first thing to do is get the list of registered connectors and select the connector for which you would like to create a link. Then
+you can get the list of all the config/inputs using <a class="reference internal" href="#display-config-and-input-names-for-connector">Display Config and Input Names For Connector</a> for that connector.</p>
+<div class="section" id="save-link">
+<h3>Save Link<a class="headerlink" href="#save-link" title="Permalink to this headline">¶</a></h3>
+<p>First create a new link by invoking <tt class="docutils literal"><span class="pre">createLink(cid)</span></tt> method with connector Id and it returns a MLink object with dummy id and the unfilled link config inputs for that connector. Then fill the config inputs with relevant values. Invoke <tt class="docutils literal"><span class="pre">saveLink</span></tt> passing it the filled MLink object.</p>
+<div class="highlight-none"><div class="highlight"><pre>// create a placeholder for link
+long connectorId = 1;
+MLink link = client.createLink(connectorId);
+link.setName(&quot;Vampire&quot;);
+link.setCreationUser(&quot;Buffy&quot;);
+MLinkConfig linkConfig = link.getConnectorLinkConfig();
+// fill in the link config values
+linkConfig.getStringInput(&quot;linkConfig.connectionString&quot;).setValue(&quot;jdbc:mysql://localhost/my&quot;);
+linkConfig.getStringInput(&quot;linkConfig.jdbcDriver&quot;).setValue(&quot;com.mysql.jdbc.Driver&quot;);
+linkConfig.getStringInput(&quot;linkConfig.username&quot;).setValue(&quot;root&quot;);
+linkConfig.getStringInput(&quot;linkConfig.password&quot;).setValue(&quot;root&quot;);
+// save the link object that was filled
+Status status = client.saveLink(link);
+if(status.canProceed()) {
+ System.out.println(&quot;Created Link with Link Id : &quot; + link.getPersistenceId());
+} else {
+ System.out.println(&quot;Something went wrong creating the link&quot;);
+}
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">status.canProceed()</span></tt> returns true if status is OK or a WARNING. Before sending the status, the link config values are validated using the corresponding validator associated with th link config inputs.</p>
+<p>On successful execution of the saveLink method, new link Id is assigned to the link object else an exception is thrown. <tt class="docutils literal"><span class="pre">link.getPersistenceId()</span></tt> method returns the unique Id for this object persisted in the sqoop repository.</p>
+<p>User can retrieve a link using the following methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">getLink(lid)</span></tt></td>
+<td>Returns a link by id</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">getLinks()</span></tt></td>
+<td>Returns list of links in the sqoop</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="job">
+<h2>Job<a class="headerlink" href="#job" title="Permalink to this headline">¶</a></h2>
+<p>A sqoop job holds the <tt class="docutils literal"><span class="pre">From</span></tt> and <tt class="docutils literal"><span class="pre">To</span></tt> parts for transferring data from the <tt class="docutils literal"><span class="pre">From</span></tt> data source to the <tt class="docutils literal"><span class="pre">To</span></tt> data source. Both the <tt class="docutils literal"><span class="pre">From</span></tt> and the <tt class="docutils literal"><span class="pre">To</span></tt> are uniquely identified by their corresponding connector Link Ids. i.e when creating a job we have to specifiy the <tt class="docutils literal"><span class="pre">FromLinkId</span></tt> and the <tt class="docutils literal"><span class="pre">ToLinkId</span></tt>. Thus the pre-requisite for creating a job is to first create the links as described above.</p>
+<p>Once the linkIds for the <tt class="docutils literal"><span class="pre">From</span></tt> and <tt class="docutils literal"><span class="pre">To</span></tt> are given, then the job configs for the associated connector for the link object have to be filled. You can get the list of all the from and to job config/inputs using <a class="reference internal" href="#display-config-and-input-names-for-connector">Display Config and Input Names For Connector</a> for that connector. A connector can have one or more links. We then use the links in the <tt class="docutils literal"><span class="pre">From</span></tt> and <tt class="docutils literal"><span class="pre">To</span></tt> direction to populate the corresponding <tt class="docutils literal"><span class="pre">MFromConfig</span></tt> and <tt class="docutils literal"><span class="pre">MToConfig</span></tt> respectively.</p>
+<p>In addition to filling the job configs for the <tt class="docutils literal"><span class="pre">From</span></tt> and the <tt class="docutils literal"><span class="pre">To</span></tt> representing the link, we also need to fill the driver configs that control the job execution engine environment. For example, if the job execution engine happens to be the MapReduce we will specifiy the number of mappers to be used in reading data from the <tt class="docutils literal"><span class="pre">From</span></tt> data source.</p>
+<div class="section" id="save-job">
+<h3>Save Job<a class="headerlink" href="#save-job" title="Permalink to this headline">¶</a></h3>
+<p>Here is the code to create and then save a job</p>
+<div class="highlight-none"><div class="highlight"><pre>String url = &quot;http://localhost:12000/sqoop/&quot;;
+SqoopClient client = new SqoopClient(url);
+//Creating dummy job object
+long fromLinkId = 1;// for jdbc connector
+long toLinkId = 2; // for HDFS connector
+MJob job = client.createJob(fromLinkId, toLinkId);
+job.setName(&quot;Vampire&quot;);
+job.setCreationUser(&quot;Buffy&quot;);
+// set the &quot;FROM&quot; link job config values
+MFromConfig fromJobConfig = job.getFromJobConfig();
+fromJobConfig.getStringInput(&quot;fromJobConfig.schemaName&quot;).setValue(&quot;sqoop&quot;);
+fromJobConfig.getStringInput(&quot;fromJobConfig.tableName&quot;).setValue(&quot;sqoop&quot;);
+fromJobConfig.getStringInput(&quot;fromJobConfig.partitionColumn&quot;).setValue(&quot;id&quot;);
+// set the &quot;TO&quot; link job config values
+MToConfig toJobConfig = job.getToJobConfig();
+toJobConfig.getStringInput(&quot;toJobConfig.outputDirectory&quot;).setValue(&quot;/usr/tmp&quot;);
+// set the driver config values
+MDriverConfig driverConfig = job.getDriverConfig();
+driverConfig.getStringInput(&quot;throttlingConfig.numExtractors&quot;).setValue(&quot;3&quot;);
+
+Status status = client.saveJob(job);
+if(status.canProceed()) {
+ System.out.println(&quot;Created Job with Job Id: &quot;+ job.getPersistenceId());
+} else {
+ System.out.println(&quot;Something went wrong creating the job&quot;);
+}
+</pre></div>
+</div>
+<p>User can retrieve a job using the following methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">getJob(jid)</span></tt></td>
+<td>Returns a job by id</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">getJobs()</span></tt></td>
+<td>Returns list of jobs in the sqoop</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="list-of-status-codes">
+<h3>List of status codes<a class="headerlink" href="#list-of-status-codes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Function</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">OK</span></tt></td>
+<td>There are no issues, no warnings.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">WARNING</span></tt></td>
+<td>Validated entity is correct enough to be proceed. Not a fatal error</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">ERROR</span></tt></td>
+<td>There are serious issues with validated entity. We can&#8217;t proceed until reported issues will be resolved.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="view-error-or-warning-valdiation-message">
+<h3>View Error or Warning valdiation message<a class="headerlink" href="#view-error-or-warning-valdiation-message" title="Permalink to this headline">¶</a></h3>
+<p>In case of any WARNING AND ERROR status, user has to iterate the list of validation messages.</p>
+<div class="highlight-none"><div class="highlight"><pre>printMessage(link.getConnectorLinkConfig().getConfigs());
+
+private static void printMessage(List&lt;MConfig&gt; configs) {
+  for(MConfig config : configs) {
+    List&lt;MInput&lt;?&gt;&gt; inputlist = config.getInputs();
+    if (config.getValidationMessages() != null) {
+     // print every validation message
+     for(Message message : config.getValidationMessages()) {
+      System.out.println(&quot;Config validation message: &quot; + message.getMessage());
+     }
+    }
+    for (MInput minput : inputlist) {
+      if (minput.getValidationStatus() == Status.WARNING) {
+       for(Message message : config.getValidationMessages()) {
+        System.out.println(&quot;Config Input Validation Warning: &quot; + message.getMessage());
+      }
+    }
+    else if (minput.getValidationStatus() == Status.ERROR) {
+      for(Message message : config.getValidationMessages()) {
+       System.out.println(&quot;Config Input Validation Error: &quot; + message.getMessage());
+      }
+     }
+    }
+   }
+</pre></div>
+</div>
+</div>
+<div class="section" id="updating-link-and-job">
+<h3>Updating link and job<a class="headerlink" href="#updating-link-and-job" title="Permalink to this headline">¶</a></h3>
+<p>After creating link or job in the repository, you can update or delete a link or job using the following functions</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">updateLink(link)</span></tt></td>
+<td>Invoke update with link and check status for any errors or warnings</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">deleteLink(lid)</span></tt></td>
+<td>Delete link. Deletes only if specified link is not used by any job</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">updateJob(job)</span></tt></td>
+<td>Invoke update with job and check status for any errors or warnings</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">deleteJob(jid)</span></tt></td>
+<td>Delete job</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="job-start">
+<h2>Job Start<a class="headerlink" href="#job-start" title="Permalink to this headline">¶</a></h2>
+<p>Starting a job requires a job id. On successful start, getStatus() method returns &#8220;BOOTING&#8221; or &#8220;RUNNING&#8221;.</p>
+<div class="highlight-none"><div class="highlight"><pre>//Job start
+long jobId = 1;
+MSubmission submission = client.startJob(jobId);
+System.out.println(&quot;Job Submission Status : &quot; + submission.getStatus());
+if(submission.getStatus().isRunning() &amp;&amp; submission.getProgress() != -1) {
+  System.out.println(&quot;Progress : &quot; + String.format(&quot;%.2f %%&quot;, submission.getProgress() * 100));
+}
+System.out.println(&quot;Hadoop job id :&quot; + submission.getExternalId());
+System.out.println(&quot;Job link : &quot; + submission.getExternalLink());
+Counters counters = submission.getCounters();
+if(counters != null) {
+  System.out.println(&quot;Counters:&quot;);
+  for(CounterGroup group : counters) {
+    System.out.print(&quot;\t&quot;);
+    System.out.println(group.getName());
+    for(Counter counter : group) {
+      System.out.print(&quot;\t\t&quot;);
+      System.out.print(counter.getName());
+      System.out.print(&quot;: &quot;);
+      System.out.println(counter.getValue());
+    }
+  }
+}
+if(submission.getExceptionInfo() != null) {
+  System.out.println(&quot;Exception info : &quot; +submission.getExceptionInfo());
+}
+
+
+//Check job status for a running job
+MSubmission submission = client.getJobStatus(jobId);
+if(submission.getStatus().isRunning() &amp;&amp; submission.getProgress() != -1) {
+  System.out.println(&quot;Progress : &quot; + String.format(&quot;%.2f %%&quot;, submission.getProgress() * 100));
+}
+
+//Stop a running job
+submission.stopJob(jobId);
+</pre></div>
+</div>
+<p>Above code block, job start is asynchronous. For synchronous job start, use <tt class="docutils literal"><span class="pre">startJob(jid,</span> <span class="pre">callback,</span> <span class="pre">pollTime)</span></tt> method. If you are not interested in getting the job status, then invoke the same method with &#8220;null&#8221; as the value for the callback parameter and this returns the final job status. <tt class="docutils literal"><span class="pre">pollTime</span></tt> is the request interval for getting the job status from sqoop server and the value should be greater than zero. We will frequently hit the sqoop server if a low value is given for the <tt class="docutils literal"><span class="pre">pollTime</span></tt>. When a synchronous job is started with a non null callback, it first invokes the callback&#8217;s <tt class="docutils literal"><span class="pre">submitted(MSubmission)</span></tt> method on successful start, after every poll time interval, it then invokes the <tt class="docutils literal"><span class="pre">updated(MSubmission)</span></tt> method on the callback API and finally on finishing the job executuon it invokes the <tt class="docutils literal"><span class="pre">finished(MSubmission)</span></tt> method on the callback API.</p>
+</div>
+<div class="section" id="display-config-and-input-names-for-connector">
+<h2>Display Config and Input Names For Connector<a class="headerlink" href="#display-config-and-input-names-for-connector" title="Permalink to this headline">¶</a></h2>
+<p>You can view the config/input names for the link and job config types per connector</p>
+<div class="highlight-none"><div class="highlight"><pre>String url = &quot;http://localhost:12000/sqoop/&quot;;
+SqoopClient client = new SqoopClient(url);
+long connectorId = 1;
+// link config for connector
+describe(client.getConnector(connectorId).getLinkConfig().getConfigs(), client.getConnectorConfigBundle(connectorId));
+// from job config for connector
+describe(client.getConnector(connectorId).getFromConfig().getConfigs(), client.getConnectorConfigBundle(connectorId));
+// to job config for the connector
+describe(client.getConnector(connectorId).getToConfig().getConfigs(), client.getConnectorConfigBundle(connectorId));
+
+void describe(List&lt;MConfig&gt; configs, ResourceBundle resource) {
+  for (MConfig config : configs) {
+    System.out.println(resource.getString(config.getLabelKey())+&quot;:&quot;);
+    List&lt;MInput&lt;?&gt;&gt; inputs = config.getInputs();
+    for (MInput input : inputs) {
+      System.out.println(resource.getString(input.getLabelKey()) + &quot; : &quot; + input.getValue());
+    }
+    System.out.println();
+  }
+}
+</pre></div>
+</div>
+<p>Above Sqoop 2 Client API tutorial explained how to create a link, create job and and then start the job.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2009-2013 The Apache Software Foundation.
+    </div>
+  </body>
+</html>

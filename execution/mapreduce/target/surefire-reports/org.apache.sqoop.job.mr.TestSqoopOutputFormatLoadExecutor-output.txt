@@ -1,0 +1,32 @@
+0    [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - SqoopOutputFormatLoadExecutor consumer thread is starting
+2    [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Running loader class org.apache.sqoop.job.mr.TestSqoopOutputFormatLoadExecutor$ThrowingContinuousLoader
+4    [OutputFormatLoader-consumer] ERROR org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Error while loading data out of MR job.
+java.util.ConcurrentModificationException
+	at org.apache.sqoop.job.mr.TestSqoopOutputFormatLoadExecutor$ThrowingContinuousLoader.load(TestSqoopOutputFormatLoadExecutor.java:74)
+	at org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor$ConsumerThread.run(SqoopOutputFormatLoadExecutor.java:247)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+30   [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - SqoopOutputFormatLoadExecutor consumer thread is starting
+30   [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Running loader class org.apache.sqoop.job.mr.TestSqoopOutputFormatLoadExecutor$GoodLoader
+30   [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Loader has finished
+30   [OutputFormatLoader-consumer] ERROR org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Reader terminated, but writer is still running!
+5031 [main] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - SqoopOutputFormatLoadExecutor::SqoopRecordWriter is about to be closed
+5044 [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - SqoopOutputFormatLoadExecutor consumer thread is starting
+5045 [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Running loader class org.apache.sqoop.job.mr.TestSqoopOutputFormatLoadExecutor$ThrowingLoader
+5045 [OutputFormatLoader-consumer] ERROR org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Error while loading data out of MR job.
+java.util.concurrent.BrokenBarrierException
+	at org.apache.sqoop.job.mr.TestSqoopOutputFormatLoadExecutor$ThrowingLoader.load(TestSqoopOutputFormatLoadExecutor.java:52)
+	at org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor$ConsumerThread.run(SqoopOutputFormatLoadExecutor.java:247)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+5060 [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - SqoopOutputFormatLoadExecutor consumer thread is starting
+5061 [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Running loader class org.apache.sqoop.job.mr.TestSqoopOutputFormatLoadExecutor$GoodContinuousLoader
+5068 [main] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - SqoopOutputFormatLoadExecutor::SqoopRecordWriter is about to be closed
+5068 [OutputFormatLoader-consumer] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - Loader has finished
+5068 [main] INFO  org.apache.sqoop.job.mr.SqoopOutputFormatLoadExecutor  - SqoopOutputFormatLoadExecutor::SqoopRecordWriter is closed

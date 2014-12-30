@@ -1,0 +1,14 @@
+0    [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+50   [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null
+976  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+1011 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null
+1779 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+1805 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null
+3416 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+3486 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - No connector found by name: A
+3487 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: B
+3487 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - No connector found by name: B
+3552 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+3568 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null
+4311 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+4330 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null

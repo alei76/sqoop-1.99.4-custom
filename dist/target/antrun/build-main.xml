@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete dir="target/sqoop-1.99.4"/>
+  <delete file="target/sqoop-1.99.4.tar.gz"/>
+  <copy flatten="false" todir="target/sqoop-1.99.4" includeEmptyDirs="false">
+    <fileset dir="../">
+      <include name="**/*"/>
+      <exclude name="build/**"/>
+      <exclude name="**/target/**"/>
+      <exclude name=".git/**"/>
+      <exclude name="tags"/>
+      <exclude name=".project"/>
+      <exclude name=".classpath"/>
+    </fileset>
+  </copy>
+  <mkdir dir="target/sqoop-1.99.4"/>
+  <tar destfile="target/sqoop-1.99.4.tar.gz" compression="gzip">
+    <tarfileset prefix="sqoop-1.99.4" filemode="755" dir="target/sqoop-1.99.4">
+      <include name="**/*.sh"/>
+    </tarfileset>
+    <tarfileset prefix="sqoop-1.99.4" dir="target/sqoop-1.99.4">
+      <include name="**/*"/>
+      <exclude name="**/bin/*"/>
+    </tarfileset>
+  </tar>
+</target>
+</project>

@@ -1,0 +1,2 @@
+0    [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A
+45   [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up connector: A, found: null

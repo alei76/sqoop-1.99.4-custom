@@ -1,0 +1,2 @@
+0    [main] WARN  org.apache.sqoop.configurable.ConfigurableUpgradeUtil  - Input: 'f1.s2_' not present in old configurable. So it will not be transferred by the upgrader.
+2    [main] WARN  org.apache.sqoop.configurable.ConfigurableUpgradeUtil  - Config: 'f2' not present in old configurable. So it and its inputs will not be transferred by the upgrader.

@@ -1,0 +1,471 @@
+0    [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+175  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+178  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_SUBMISSION ALTER COLUMN SQS_EXTERNAL_ID SET DATA TYPE VARCHAR(50)) Update count: 0
+179  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTOR ALTER COLUMN SQC_VERSION SET DATA TYPE VARCHAR(64)) Update count: 0
+181  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_DIRECTION (SQD_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQD_NAME VARCHAR(64))) Update count: 0
+183  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_FORM.SQF_OPERATION TO SQF_DIRECTION) Update count: 0
+185  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_JOB.SQB_CONNECTION TO SQB_FROM_CONNECTION) Update count: 0
+186  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD COLUMN SQB_TO_CONNECTION BIGINT) Update count: 0
+189  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP CONSTRAINT SQOOP.FK_SQB_SQN) Update count: 0
+194  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQN_FROM FOREIGN KEY (SQB_FROM_CONNECTION) REFERENCES SQOOP.SQ_CONNECTION (SQN_ID)) Update count: 0
+199  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQN_TO FOREIGN KEY (SQB_TO_CONNECTION) REFERENCES SQOOP.SQ_CONNECTION (SQN_ID)) Update count: 0
+199  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Force registering the HDFS connector as a new configurable
+203  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Finished Force registering the HDFS connector as a new configurable
+203  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Updating config and inputs for the hdfs connector.
+208  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_DIRECTION=? WHERE SQF_DIRECTION=? AND SQF_CONNECTOR IS NOT NULL) Update count: 2
+209  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_DIRECTION=? WHERE SQF_DIRECTION=? AND SQF_CONNECTOR IS NOT NULL) Update count: 2
+213  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_DIRECTION= ? WHERE SQF_NAME= ?) Update count: 1
+213  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_DIRECTION= ? WHERE SQF_NAME= ?) Update count: 1
+218  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_CONNECTOR= ? WHERE SQF_CONNECTOR IS NULL AND SQF_NAME IN (?, ?)) Update count: 2
+224  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_NAME= ? WHERE SQF_NAME= ?) Update count: 1
+225  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_NAME= ? WHERE SQF_NAME= ?) Update count: 1
+233  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_INPUT (SQI_NAME, SQI_FORM, SQI_INDEX, SQI_TYPE, SQI_STRMASK, SQI_STRLENGTH, SQI_ENUMVALS) VALUES (?, ?, ?, ?, ?, ?, ?)) Update count: 1
+269  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_JOB_INPUT SQBI SET SQBI.SQBI_INPUT=(SELECT SQI.SQI_ID FROM SQOOP.SQ_INPUT SQI INNER JOIN SQOOP.SQ_FORM SQF ON SQI.SQI_FORM=SQF.SQF_ID WHERE SQF.SQF_NAME='throttling' AND SQF.SQF_DIRECTION=? AND SQI.SQI_NAME=(SELECT SQI2.SQI_NAME FROM SQOOP.SQ_INPUT SQI2 WHERE SQI2.SQI_ID=SQBI.SQBI_INPUT FETCH FIRST 1 ROWS ONLY))WHERE SQBI.SQBI_INPUT IN (SELECT SQI.SQI_ID FROM SQOOP.SQ_INPUT SQI INNER JOIN SQOOP.SQ_FORM SQF ON SQI.SQI_FORM=SQF.SQF_ID WHERE SQF.SQF_NAME='throttling' AND SQF.SQF_DIRECTION=?)) Update count: 0
+280  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_INPUT SQI WHERE SQI.SQI_FORM IN (SELECT SQF.SQF_ID FROM SQOOP.SQ_FORM SQF  WHERE SQF.SQF_NAME= ? AND SQF.SQF_DIRECTION= ?)) Update count: 2
+286  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_FORM WHERE SQF_NAME= ? AND SQF_DIRECTION= ?) Update count: 1
+289  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_DIRECTION= NULL WHERE SQF_NAME= ?) Update count: 1
+295  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_FORM SET SQF_INDEX= ? WHERE SQF_NAME= ?) Update count: 1
+307  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_JOB SET SQB_TO_CONNECTION=SQB_FROM_CONNECTION WHERE SQB_TYPE= ?) Update count: 2
+314  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_JOB SET SQB_FROM_CONNECTION=? WHERE SQB_TYPE= ?) Update count: 2
+319  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_JOB SET SQB_TO_CONNECTION=? WHERE SQB_TYPE= ?) Update count: 2
+329  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_INPUT SET SQI_NAME=(? || SUBSTR(SQI_NAME, 6) ) WHERE SQI_FORM IN ( SELECT SQF_ID FROM SQOOP.SQ_FORM WHERE SQF_NAME= ? AND SQF_DIRECTION= ?)) Update count: 1
+340  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_INPUT SET SQI_NAME=(? || SUBSTR(SQI_NAME, 7) ) WHERE SQI_FORM IN ( SELECT SQF_ID FROM SQOOP.SQ_FORM WHERE SQF_NAME= ? AND SQF_DIRECTION= ?)) Update count: 4
+340  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Finished Updating config and inputs for the hdfs connector.
+349  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP COLUMN SQB_TYPE) Update count: 0
+352  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTION_INPUT DROP CONSTRAINT SQOOP.FK_SQNI_SQI) Update count: 0
+355  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTION_INPUT DROP CONSTRAINT SQOOP.FK_SQNI_SQN) Update count: 0
+360  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP CONSTRAINT SQOOP.FK_SQB_SQN_FROM) Update count: 0
+365  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP CONSTRAINT SQOOP.FK_SQB_SQN_TO) Update count: 0
+367  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_CONNECTION TO SQ_LINK) Update count: 0
+370  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_ID TO SQ_LNK_ID) Update count: 0
+371  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_NAME TO SQ_LNK_NAME) Update count: 0
+373  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_CONNECTOR TO SQ_LNK_CONNECTOR) Update count: 0
+374  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_CREATION_USER TO SQ_LNK_CREATION_USER) Update count: 0
+375  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_CREATION_DATE TO SQ_LNK_CREATION_DATE) Update count: 0
+376  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_UPDATE_USER TO SQ_LNK_UPDATE_USER) Update count: 0
+377  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_UPDATE_DATE TO SQ_LNK_UPDATE_DATE) Update count: 0
+378  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_ENABLED TO SQ_LNK_ENABLED) Update count: 0
+383  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK DROP CONSTRAINT SQOOP.FK_SQN_SQC) Update count: 0
+386  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK ADD CONSTRAINT SQOOP.FK_SQ_LNK_SQC FOREIGN KEY (SQ_LNK_CONNECTOR) REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID)) Update count: 0
+386  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - LINK TABLE altered
+387  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_CONNECTION_INPUT TO SQ_LINK_INPUT) Update count: 0
+388  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK_INPUT.SQNI_CONNECTION TO SQ_LNKI_LINK) Update count: 0
+390  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK_INPUT.SQNI_INPUT TO SQ_LNKI_INPUT) Update count: 0
+391  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK_INPUT.SQNI_VALUE TO SQ_LNKI_VALUE) Update count: 0
+394  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK_INPUT ADD CONSTRAINT SQOOP.FK_SQ_LNKI_SQ_LNK FOREIGN KEY (SQ_LNKI_LINK) REFERENCES SQOOP.SQ_LINK (SQ_LNK_ID)) Update count: 0
+394  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - LINK_INPUT TABLE altered
+397  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_INPUT DROP CONSTRAINT SQOOP.FK_SQI_SQF) Update count: 0
+398  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_FORM TO SQ_CONFIG) Update count: 0
+399  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_ID TO SQ_CFG_ID) Update count: 0
+401  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_CONNECTOR TO SQ_CFG_CONNECTOR) Update count: 0
+402  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_DIRECTION TO SQ_CFG_DIRECTION) Update count: 0
+404  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_NAME TO SQ_CFG_NAME) Update count: 0
+405  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_TYPE TO SQ_CFG_TYPE) Update count: 0
+407  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_INDEX TO SQ_CFG_INDEX) Update count: 0
+409  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG DROP CONSTRAINT SQOOP.FK_SQF_SQC) Update count: 0
+411  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG ADD CONSTRAINT SQOOP.FK_SQ_CFG_SQC FOREIGN KEY (SQ_CFG_CONNECTOR) REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID)) Update count: 0
+411  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - CONFIG TABLE altered
+413  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_INPUT.SQI_FORM TO SQI_CONFIG) Update count: 0
+416  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_INPUT ADD CONSTRAINT SQOOP.FK_SQI_SQ_CFG FOREIGN KEY (SQI_CONFIG) REFERENCES SQOOP.SQ_CONFIG (SQ_CFG_ID)) Update count: 0
+416  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - INPUT TABLE altered and constraints added
+418  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_JOB.SQB_FROM_CONNECTION TO SQB_FROM_LINK) Update count: 0
+431  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_JOB.SQB_TO_CONNECTION TO SQB_TO_LINK) Update count: 0
+435  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQ_LNK_FROM FOREIGN KEY (SQB_FROM_LINK) REFERENCES SQOOP.SQ_LINK (SQ_LNK_ID)) Update count: 0
+439  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQ_LNK_TO FOREIGN KEY (SQB_TO_LINK) REFERENCES SQOOP.SQ_LINK (SQ_LNK_ID)) Update count: 0
+439  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - JOB TABLE altered and constraints added
+441  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Loaded direction: 1
+442  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Loaded direction: 2
+450  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG DROP COLUMN SQ_CFG_DIRECTION) Update count: 0
+455  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_CONNECTOR_DIRECTIONS (SQCD_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQCD_CONNECTOR BIGINT, SQCD_DIRECTION BIGINT, CONSTRAINT SQOOP.FK_SQCD_SQC FOREIGN KEY (SQCD_CONNECTOR) REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID), CONSTRAINT SQOOP.FK_SQCD_SQD FOREIGN KEY (SQCD_DIRECTION) REFERENCES SQOOP.SQ_DIRECTION (SQD_ID))) Update count: 0
+462  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQ_CFG_DIR_CONFIG BIGINT, SQ_CFG_DIR_DIRECTION BIGINT, CONSTRAINT SQOOP.FK_SQ_CFG_DIR_CONFIG FOREIGN KEY (SQ_CFG_DIR_CONFIG) REFERENCES SQOOP.SQ_CONFIG (SQ_CFG_ID), CONSTRAINT SQOOP.FK_SQ_CFG_DIR_DIRECTION FOREIGN KEY (SQ_CFG_DIR_DIRECTION) REFERENCES SQOOP.SQ_DIRECTION (SQD_ID))) Update count: 0
+466  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_CONFIG, SQ_CFG_DIR_DIRECTION) VALUES (?, ?)) Update count: 1
+467  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_CONFIG, SQ_CFG_DIR_DIRECTION) VALUES (?, ?)) Update count: 1
+467  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_CONFIG, SQ_CFG_DIR_DIRECTION) VALUES (?, ?)) Update count: 1
+468  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_CONFIG, SQ_CFG_DIR_DIRECTION) VALUES (?, ?)) Update count: 1
+468  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_CONFIG, SQ_CFG_DIR_DIRECTION) VALUES (?, ?)) Update count: 1
+468  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_CONFIG, SQ_CFG_DIR_DIRECTION) VALUES (?, ?)) Update count: 1
+475  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONNECTOR_DIRECTIONS (SQCD_CONNECTOR, SQCD_DIRECTION) VALUES (?, ?)) Update count: 1
+476  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONNECTOR_DIRECTIONS (SQCD_CONNECTOR, SQCD_DIRECTION) VALUES (?, ?)) Update count: 1
+476  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONNECTOR_DIRECTIONS (SQCD_CONNECTOR, SQCD_DIRECTION) VALUES (?, ?)) Update count: 1
+476  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_CONNECTOR_DIRECTIONS (SQCD_CONNECTOR, SQCD_DIRECTION) VALUES (?, ?)) Update count: 1
+478  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG DROP CONSTRAINT SQOOP.FK_SQ_CFG_SQC) Update count: 0
+485  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK DROP CONSTRAINT SQOOP.FK_SQ_LNK_SQC) Update count: 0
+488  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTOR_DIRECTIONS DROP CONSTRAINT SQOOP.FK_SQCD_SQC) Update count: 0
+489  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_CONNECTOR TO SQ_CONFIGURABLE) Update count: 0
+495  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQ_CFG_CONNECTOR TO SQ_CFG_CONFIGURABLE) Update count: 0
+497  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQ_LNK_CONNECTOR TO SQ_LNK_CONFIGURABLE) Update count: 0
+498  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIGURABLE ADD COLUMN SQC_TYPE VARCHAR(32)) Update count: 0
+501  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG ADD CONSTRAINT SQOOP.FK_SQ_CFG_SQC FOREIGN KEY (SQ_CFG_CONFIGURABLE) REFERENCES SQOOP.SQ_CONFIGURABLE (SQC_ID)) Update count: 0
+504  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK ADD CONSTRAINT SQOOP.FK_SQ_LNK_SQC FOREIGN KEY (SQ_LNK_CONFIGURABLE) REFERENCES SQOOP.SQ_CONFIGURABLE (SQC_ID)) Update count: 0
+506  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTOR_DIRECTIONS ADD CONSTRAINT SQOOP.FK_SQCD_SQC FOREIGN KEY (SQCD_CONNECTOR) REFERENCES SQOOP.SQ_CONFIGURABLE (SQC_ID)) Update count: 0
+507  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - CONNECTOR TABLE altered and constraints added for CONFIGURABLE
+509  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_NAME_UNIQUE UNIQUE (SQB_NAME)) Update count: 0
+512  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK ADD CONSTRAINT SQOOP.FK_SQ_LNK_NAME_UNIQUE UNIQUE (SQ_LNK_NAME)) Update count: 0
+514  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIGURABLE ADD CONSTRAINT SQOOP.FK_SQC_NAME_UNIQUE UNIQUE (SQC_NAME)) Update count: 0
+514  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Force registering the Driver as a new configurable
+531  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Finished Force registering of the driver as a new configurable
+533  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Updating config and inputs for the driver.
+536  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_CONFIG SET SQ_CFG_NAME= ? WHERE SQ_CFG_NAME= ?) Update count: 1
+539  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_CONFIG SET SQ_CFG_CONFIGURABLE= ? WHERE SQ_CFG_NAME= ?) Update count: 1
+543  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_INPUT WHERE SQI_NAME= ?) Update count: 1
+598  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_CONFIG WHERE SQ_CFG_NAME= ?) Update count: 1
+602  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_INPUT SET SQI_NAME= ? WHERE SQI_NAME= ?) Update count: 1
+603  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(UPDATE SQOOP.SQ_INPUT SET SQI_NAME= ? WHERE SQI_NAME= ?) Update count: 1
+603  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Finished Updating config and inputs for the driver.
+606  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_SYSTEM WHERE SQM_KEY = ?) Update count: 1
+607  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_SYSTEM WHERE SQM_KEY = ?) Update count: 1
+610  [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_SYSTEM(SQM_KEY, SQM_VALUE) VALUES(?, ?)) Update count: 1
+610  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looking up Driver and config 
+630  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Looked up Driver and config
+642  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+642  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION
+642  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTOR
+642  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION_INPUT
+642  [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_FORM
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_SUBMISSION
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTOR
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER_SUBMISSION
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION_INPUT
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_INPUT
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER_GROUP
+1983 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_JOB_INPUT
+1984 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_FORM
+1984 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_JOB
+1986 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Can't fetch repository structure version.
+java.sql.SQLSyntaxErrorException: Schema 'SQOOP' does not exist
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.sqoop.repository.derby.DerbyRepositoryHandler.detectRepositoryVersion(DerbyRepositoryHandler.java:363)
+	at org.apache.sqoop.repository.derby.DerbyRepositoryHandler.isRespositorySuitableForUse(DerbyRepositoryHandler.java:979)
+	at org.apache.sqoop.repository.derby.TestRespositorySchemaUpgrade.testCreateorUpdateRepositorySchema(TestRespositorySchemaUpgrade.java:48)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:134)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:103)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:74)
+Caused by: java.sql.SQLException: Schema 'SQOOP' does not exist
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 47 more
+Caused by: ERROR 42Y07: Schema 'SQOOP' does not exist
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.catalog.DataDictionaryImpl.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.QueryTreeNode.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.QueryTreeNode.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindTableDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindNonVTITables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromList.bindTables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.SelectNode.bindNonVTITables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindTables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(Unknown Source)
+	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 41 more
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_SUBMISSION
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTOR
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER_SUBMISSION
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION_INPUT
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_INPUT
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER_GROUP
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_JOB_INPUT
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_FORM
+1998 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_JOB
+1999 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Can't fetch repository structure version.
+java.sql.SQLSyntaxErrorException: Schema 'SQOOP' does not exist
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.sqoop.repository.derby.DerbyRepositoryHandler.detectRepositoryVersion(DerbyRepositoryHandler.java:363)
+	at org.apache.sqoop.repository.derby.DerbyRepositoryHandler.createOrUpgradeRepository(DerbyRepositoryHandler.java:388)
+	at org.apache.sqoop.repository.derby.TestRespositorySchemaUpgrade.testCreateorUpdateRepositorySchema(TestRespositorySchemaUpgrade.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:134)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:103)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:74)
+Caused by: java.sql.SQLException: Schema 'SQOOP' does not exist
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 47 more
+Caused by: ERROR 42Y07: Schema 'SQOOP' does not exist
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.catalog.DataDictionaryImpl.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.QueryTreeNode.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.QueryTreeNode.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindTableDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindNonVTITables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromList.bindTables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.SelectNode.bindNonVTITables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindTables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(Unknown Source)
+	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 41 more
+2000 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE SCHEMA SQOOP) Update count: 0
+2002 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_CONNECTOR (SQC_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQC_NAME VARCHAR(64), SQC_CLASS VARCHAR(255), SQC_VERSION VARCHAR(64) )) Update count: 0
+2006 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_FORM (SQF_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQF_CONNECTOR BIGINT, SQF_OPERATION VARCHAR(32), SQF_NAME VARCHAR(64), SQF_TYPE VARCHAR(32), SQF_INDEX SMALLINT, CONSTRAINT SQOOP.FK_SQF_SQC FOREIGN KEY (SQF_CONNECTOR) REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID))) Update count: 0
+2009 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_INPUT (SQI_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQI_NAME VARCHAR(64), SQI_FORM BIGINT, SQI_INDEX SMALLINT, SQI_TYPE VARCHAR(32), SQI_STRMASK BOOLEAN, SQI_STRLENGTH SMALLINT, SQI_ENUMVALS VARCHAR(100),CONSTRAINT SQOOP.FK_SQI_SQF FOREIGN KEY (SQI_FORM) REFERENCES SQOOP.SQ_FORM (SQF_ID))) Update count: 0
+2012 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_CONNECTION (SQN_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQN_CONNECTOR BIGINT, SQN_NAME VARCHAR(32),SQN_CREATION_DATE TIMESTAMP,SQN_UPDATE_DATE TIMESTAMP,CONSTRAINT SQOOP.FK_SQN_SQC FOREIGN KEY(SQN_CONNECTOR)  REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID))) Update count: 0
+2015 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_JOB (SQB_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQB_CONNECTION BIGINT, SQB_NAME VARCHAR(64), SQB_TYPE VARCHAR(64),SQB_CREATION_DATE TIMESTAMP,SQB_UPDATE_DATE TIMESTAMP,CONSTRAINT SQOOP.FK_SQB_SQN FOREIGN KEY(SQB_CONNECTION) REFERENCES SQOOP.SQ_CONNECTION (SQN_ID))) Update count: 0
+2020 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_CONNECTION_INPUT (SQNI_CONNECTION BIGINT, SQNI_INPUT BIGINT, SQNI_VALUE LONG VARCHAR,PRIMARY KEY (SQNI_CONNECTION, SQNI_INPUT), CONSTRAINT SQOOP.FK_SQNI_SQN FOREIGN KEY (SQNI_CONNECTION) REFERENCES SQOOP.SQ_CONNECTION (SQN_ID),CONSTRAINT SQOOP.FK_SQNI_SQI FOREIGN KEY (SQNI_INPUT) REFERENCES SQOOP.SQ_INPUT (SQI_ID))) Update count: 0
+2024 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_JOB_INPUT (SQBI_JOB BIGINT, SQBI_INPUT BIGINT, SQBI_VALUE LONG VARCHAR, PRIMARY KEY (SQBI_JOB, SQBI_INPUT),  CONSTRAINT SQOOP.FK_SQBI_SQB FOREIGN KEY (SQBI_JOB) REFERENCES SQOOP.SQ_JOB (SQB_ID),  CONSTRAINT SQOOP.FK_SQBI_SQI FOREIGN KEY (SQBI_INPUT) REFERENCES SQOOP.SQ_INPUT (SQI_ID))) Update count: 0
+2028 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_SUBMISSION (SQS_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), SQS_JOB BIGINT, SQS_STATUS VARCHAR(20), SQS_CREATION_DATE TIMESTAMP,SQS_UPDATE_DATE TIMESTAMP,SQS_EXTERNAL_ID VARCHAR(50), SQS_EXTERNAL_LINK VARCHAR(150), SQS_EXCEPTION VARCHAR(150), SQS_EXCEPTION_TRACE VARCHAR(750), PRIMARY KEY (SQS_ID), CONSTRAINT SQOOP.FK_SQS_SQB FOREIGN KEY (SQS_JOB) REFERENCES SQOOP.SQ_JOB(SQB_ID) ON DELETE CASCADE)) Update count: 0
+2031 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_COUNTER_GROUP (SQG_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), SQG_NAME VARCHAR(75), PRIMARY KEY (SQG_ID),UNIQUE ( SQG_NAME))) Update count: 0
+2032 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_COUNTER (SQR_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), SQR_NAME VARCHAR(75), PRIMARY KEY (SQR_ID), UNIQUE ( SQR_NAME))) Update count: 0
+2041 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_COUNTER_SUBMISSION (SQRS_GROUP BIGINT, SQRS_COUNTER BIGINT, SQRS_SUBMISSION BIGINT, SQRS_VALUE BIGINT, PRIMARY KEY (SQRS_GROUP, SQRS_COUNTER, SQRS_SUBMISSION), CONSTRAINT SQOOP.FK_SQRS_SQG FOREIGN KEY (SQRS_GROUP) REFERENCES SQOOP.SQ_COUNTER_GROUP(SQG_ID), CONSTRAINT SQOOP.FK_SQRS_SQR FOREIGN KEY (SQRS_COUNTER) REFERENCES SQOOP.SQ_COUNTER(SQR_ID), CONSTRAINT SQOOP.FK_SQRS_SQS FOREIGN KEY (SQRS_SUBMISSION) REFERENCES SQOOP.SQ_SUBMISSION(SQS_ID) ON DELETE CASCADE )) Update count: 0
+2044 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_SYSTEM (SQM_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQM_KEY VARCHAR(64), SQM_VALUE VARCHAR(64) )) Update count: 0
+2051 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTION ADD SQN_ENABLED BOOLEAN DEFAULT TRUE) Update count: 0
+2055 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD SQB_ENABLED BOOLEAN DEFAULT TRUE) Update count: 0
+2056 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTION ADD SQN_CREATION_USER VARCHAR(32) DEFAULT NULL) Update count: 0
+2056 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTION ADD SQN_UPDATE_USER VARCHAR(32) DEFAULT NULL) Update count: 0
+2058 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD SQB_CREATION_USER VARCHAR(32) DEFAULT NULL) Update count: 0
+2058 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD SQB_UPDATE_USER VARCHAR(32) DEFAULT NULL) Update count: 0
+2059 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_SUBMISSION ADD SQS_CREATION_USER VARCHAR(32) DEFAULT NULL) Update count: 0
+2060 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_SUBMISSION ADD SQS_UPDATE_USER VARCHAR(32) DEFAULT NULL) Update count: 0
+2062 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_SUBMISSION ALTER COLUMN SQS_EXTERNAL_ID SET DATA TYPE VARCHAR(50)) Update count: 0
+2062 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTOR ALTER COLUMN SQC_VERSION SET DATA TYPE VARCHAR(64)) Update count: 0
+2064 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_DIRECTION (SQD_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQD_NAME VARCHAR(64))) Update count: 0
+2065 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_FORM.SQF_OPERATION TO SQF_DIRECTION) Update count: 0
+2066 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_JOB.SQB_CONNECTION TO SQB_FROM_CONNECTION) Update count: 0
+2067 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD COLUMN SQB_TO_CONNECTION BIGINT) Update count: 0
+2069 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP CONSTRAINT SQOOP.FK_SQB_SQN) Update count: 0
+2072 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQN_FROM FOREIGN KEY (SQB_FROM_CONNECTION) REFERENCES SQOOP.SQ_CONNECTION (SQN_ID)) Update count: 0
+2076 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQN_TO FOREIGN KEY (SQB_TO_CONNECTION) REFERENCES SQOOP.SQ_CONNECTION (SQN_ID)) Update count: 0
+2081 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP COLUMN SQB_TYPE) Update count: 0
+2083 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTION_INPUT DROP CONSTRAINT SQOOP.FK_SQNI_SQI) Update count: 0
+2085 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTION_INPUT DROP CONSTRAINT SQOOP.FK_SQNI_SQN) Update count: 0
+2086 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP CONSTRAINT SQOOP.FK_SQB_SQN_FROM) Update count: 0
+2090 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB DROP CONSTRAINT SQOOP.FK_SQB_SQN_TO) Update count: 0
+2091 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_CONNECTION TO SQ_LINK) Update count: 0
+2092 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_ID TO SQ_LNK_ID) Update count: 0
+2093 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_NAME TO SQ_LNK_NAME) Update count: 0
+2094 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_CONNECTOR TO SQ_LNK_CONNECTOR) Update count: 0
+2095 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_CREATION_USER TO SQ_LNK_CREATION_USER) Update count: 0
+2096 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_CREATION_DATE TO SQ_LNK_CREATION_DATE) Update count: 0
+2097 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_UPDATE_USER TO SQ_LNK_UPDATE_USER) Update count: 0
+2098 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_UPDATE_DATE TO SQ_LNK_UPDATE_DATE) Update count: 0
+2099 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQN_ENABLED TO SQ_LNK_ENABLED) Update count: 0
+2101 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK DROP CONSTRAINT SQOOP.FK_SQN_SQC) Update count: 0
+2103 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK ADD CONSTRAINT SQOOP.FK_SQ_LNK_SQC FOREIGN KEY (SQ_LNK_CONNECTOR) REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID)) Update count: 0
+2103 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - LINK TABLE altered
+2104 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_CONNECTION_INPUT TO SQ_LINK_INPUT) Update count: 0
+2105 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK_INPUT.SQNI_CONNECTION TO SQ_LNKI_LINK) Update count: 0
+2105 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK_INPUT.SQNI_INPUT TO SQ_LNKI_INPUT) Update count: 0
+2106 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK_INPUT.SQNI_VALUE TO SQ_LNKI_VALUE) Update count: 0
+2108 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK_INPUT ADD CONSTRAINT SQOOP.FK_SQ_LNKI_SQ_LNK FOREIGN KEY (SQ_LNKI_LINK) REFERENCES SQOOP.SQ_LINK (SQ_LNK_ID)) Update count: 0
+2108 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - LINK_INPUT TABLE altered
+2110 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_INPUT DROP CONSTRAINT SQOOP.FK_SQI_SQF) Update count: 0
+2111 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_FORM TO SQ_CONFIG) Update count: 0
+2112 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_ID TO SQ_CFG_ID) Update count: 0
+2113 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_CONNECTOR TO SQ_CFG_CONNECTOR) Update count: 0
+2115 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_DIRECTION TO SQ_CFG_DIRECTION) Update count: 0
+2115 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_NAME TO SQ_CFG_NAME) Update count: 0
+2117 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_TYPE TO SQ_CFG_TYPE) Update count: 0
+2117 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQF_INDEX TO SQ_CFG_INDEX) Update count: 0
+2119 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG DROP CONSTRAINT SQOOP.FK_SQF_SQC) Update count: 0
+2121 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG ADD CONSTRAINT SQOOP.FK_SQ_CFG_SQC FOREIGN KEY (SQ_CFG_CONNECTOR) REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID)) Update count: 0
+2121 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - CONFIG TABLE altered
+2122 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_INPUT.SQI_FORM TO SQI_CONFIG) Update count: 0
+2124 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_INPUT ADD CONSTRAINT SQOOP.FK_SQI_SQ_CFG FOREIGN KEY (SQI_CONFIG) REFERENCES SQOOP.SQ_CONFIG (SQ_CFG_ID)) Update count: 0
+2124 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - INPUT TABLE altered and constraints added
+2125 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_JOB.SQB_FROM_CONNECTION TO SQB_FROM_LINK) Update count: 0
+2128 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_JOB.SQB_TO_CONNECTION TO SQB_TO_LINK) Update count: 0
+2131 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQ_LNK_FROM FOREIGN KEY (SQB_FROM_LINK) REFERENCES SQOOP.SQ_LINK (SQ_LNK_ID)) Update count: 0
+2134 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_SQ_LNK_TO FOREIGN KEY (SQB_TO_LINK) REFERENCES SQOOP.SQ_LINK (SQ_LNK_ID)) Update count: 0
+2134 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - JOB TABLE altered and constraints added
+2139 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Loaded direction: 1
+2139 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Loaded direction: 2
+2148 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG DROP COLUMN SQ_CFG_DIRECTION) Update count: 0
+2151 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_CONNECTOR_DIRECTIONS (SQCD_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQCD_CONNECTOR BIGINT, SQCD_DIRECTION BIGINT, CONSTRAINT SQOOP.FK_SQCD_SQC FOREIGN KEY (SQCD_CONNECTOR) REFERENCES SQOOP.SQ_CONNECTOR (SQC_ID), CONSTRAINT SQOOP.FK_SQCD_SQD FOREIGN KEY (SQCD_DIRECTION) REFERENCES SQOOP.SQ_DIRECTION (SQD_ID))) Update count: 0
+2156 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(CREATE TABLE SQOOP.SQ_CONFIG_DIRECTIONS (SQ_CFG_DIR_ID BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, SQ_CFG_DIR_CONFIG BIGINT, SQ_CFG_DIR_DIRECTION BIGINT, CONSTRAINT SQOOP.FK_SQ_CFG_DIR_CONFIG FOREIGN KEY (SQ_CFG_DIR_CONFIG) REFERENCES SQOOP.SQ_CONFIG (SQ_CFG_ID), CONSTRAINT SQOOP.FK_SQ_CFG_DIR_DIRECTION FOREIGN KEY (SQ_CFG_DIR_DIRECTION) REFERENCES SQOOP.SQ_DIRECTION (SQD_ID))) Update count: 0
+2160 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG DROP CONSTRAINT SQOOP.FK_SQ_CFG_SQC) Update count: 0
+2162 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK DROP CONSTRAINT SQOOP.FK_SQ_LNK_SQC) Update count: 0
+2163 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTOR_DIRECTIONS DROP CONSTRAINT SQOOP.FK_SQCD_SQC) Update count: 0
+2164 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME TABLE SQOOP.SQ_CONNECTOR TO SQ_CONFIGURABLE) Update count: 0
+2165 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_CONFIG.SQ_CFG_CONNECTOR TO SQ_CFG_CONFIGURABLE) Update count: 0
+2166 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(RENAME COLUMN SQOOP.SQ_LINK.SQ_LNK_CONNECTOR TO SQ_LNK_CONFIGURABLE) Update count: 0
+2167 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIGURABLE ADD COLUMN SQC_TYPE VARCHAR(32)) Update count: 0
+2169 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIG ADD CONSTRAINT SQOOP.FK_SQ_CFG_SQC FOREIGN KEY (SQ_CFG_CONFIGURABLE) REFERENCES SQOOP.SQ_CONFIGURABLE (SQC_ID)) Update count: 0
+2170 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK ADD CONSTRAINT SQOOP.FK_SQ_LNK_SQC FOREIGN KEY (SQ_LNK_CONFIGURABLE) REFERENCES SQOOP.SQ_CONFIGURABLE (SQC_ID)) Update count: 0
+2173 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONNECTOR_DIRECTIONS ADD CONSTRAINT SQOOP.FK_SQCD_SQC FOREIGN KEY (SQCD_CONNECTOR) REFERENCES SQOOP.SQ_CONFIGURABLE (SQC_ID)) Update count: 0
+2173 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - CONNECTOR TABLE altered and constraints added for CONFIGURABLE
+2174 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_JOB ADD CONSTRAINT SQOOP.FK_SQB_NAME_UNIQUE UNIQUE (SQB_NAME)) Update count: 0
+2176 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_LINK ADD CONSTRAINT SQOOP.FK_SQ_LNK_NAME_UNIQUE UNIQUE (SQ_LNK_NAME)) Update count: 0
+2177 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(ALTER TABLE SQOOP.SQ_CONFIGURABLE ADD CONSTRAINT SQOOP.FK_SQC_NAME_UNIQUE UNIQUE (SQC_NAME)) Update count: 0
+2180 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_SYSTEM WHERE SQM_KEY = ?) Update count: 0
+2180 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(DELETE FROM SQOOP.SQ_SYSTEM WHERE SQM_KEY = ?) Update count: 0
+2185 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - QUERY(INSERT INTO SQOOP.SQ_SYSTEM(SQM_KEY, SQM_VALUE) VALUES(?, ?)) Update count: 1
+2190 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+2190 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION
+2191 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTOR
+2191 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION_INPUT
+2191 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_FORM
+2754 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+2754 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION
+2754 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER
+2754 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_SUBMISSION
+2754 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTOR
+2754 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER_SUBMISSION
+2754 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION_INPUT
+2756 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_INPUT
+2756 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_COUNTER_GROUP
+2756 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_JOB_INPUT
+2756 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_FORM
+2756 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_JOB
+2757 [main] INFO  org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Can't fetch repository structure version.
+java.sql.SQLSyntaxErrorException: Schema 'SQOOP' does not exist
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.sqoop.repository.derby.DerbyRepositoryHandler.detectRepositoryVersion(DerbyRepositoryHandler.java:363)
+	at org.apache.sqoop.repository.derby.DerbyRepositoryHandler.isRespositorySuitableForUse(DerbyRepositoryHandler.java:979)
+	at org.apache.sqoop.repository.derby.TestRespositorySchemaUpgrade.testHasLatestRepositoryVersion(TestRespositorySchemaUpgrade.java:41)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:134)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:103)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:74)
+Caused by: java.sql.SQLException: Schema 'SQOOP' does not exist
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 47 more
+Caused by: ERROR 42Y07: Schema 'SQOOP' does not exist
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.catalog.DataDictionaryImpl.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.QueryTreeNode.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.QueryTreeNode.getSchemaDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindTableDescriptor(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindNonVTITables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.FromList.bindTables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.SelectNode.bindNonVTITables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindTables(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(Unknown Source)
+	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 41 more
+2930 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Detecting existing version of repository
+2930 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION
+2930 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTOR
+2930 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_CONNECTION_INPUT
+2930 [main] DEBUG org.apache.sqoop.repository.derby.DerbyRepositoryHandler  - Missing table SQ_FORM
